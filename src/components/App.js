@@ -32,24 +32,30 @@ function App() {
         onKeyDown={search}
       />
 
-      {weather && weather.main && (
+      {weather && (
         <div className="weather">
           <div className="city">{weather.name}</div>
 
-          <div className="temperature">
-            {Math.round(kelvinToFahrenheit(weather.main.temp))}°F
-          </div>
+          {weather.main && (
+            <div className="temperature">
+              {Math.round(kelvinToFahrenheit(weather.main.temp))}°F
+            </div>
+          )}
 
-          <div className="description">
-            {weather.weather[0].description}
-          </div>
+          {weather.weather && (
+            <>
+              <div className="description">
+                {weather.weather[0].description}
+              </div>
 
-          <div className="icon">
-            <img
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
-              alt={weather.weather[0].description}
-            />
-          </div>
+              <div className="icon">
+                <img
+                  src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
+                  alt={weather.weather[0].description}
+                />
+              </div>
+            </>
+          )}
         </div>
       )}
     </div>
