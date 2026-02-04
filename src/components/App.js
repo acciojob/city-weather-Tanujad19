@@ -34,7 +34,8 @@ function App() {
 
       {weather && (
         <div className="weather">
-          <div className="city">{weather.name}</div>
+          {/* ✅ ALWAYS visible content */}
+          <div className="city">{weather.name || "Weather Info"}</div>
 
           {weather.main && (
             <div className="temperature">
