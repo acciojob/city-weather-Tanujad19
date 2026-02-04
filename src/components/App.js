@@ -6,15 +6,16 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState(null);
 
-  const search = async (e) => {
+  const search = (e) => {
     if (e.key === "Enter") {
-      const response = await fetch(
+      fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
-      );
-
-      const data = await response.json();
-      setWeather(data);
-      setQuery("");
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setWeather(data);
+          setQuery("");
+        });
     }
   };
 
